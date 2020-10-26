@@ -5,6 +5,7 @@ import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import seedu.duke.Ui;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
 
 public class Initialiseuser {
@@ -16,8 +17,12 @@ public class Initialiseuser {
         return Duke.in.nextLine();
     }
 
+    public static String input() {
+        return Duke.in.nextLine();
+    }
+
     public static void createNewProfile() {
-        sendname();
+        name();
         try {
             gender();
         } catch (IOException e) {
@@ -25,8 +30,9 @@ public class Initialiseuser {
         }
     }
 
-    public static void sendname()  {
-        data[0] = input("What is your name?\n");
+    public static void name()  {
+        Ui.displayAskUserNameMessage();
+        data[0] = input();
     }
 
     public static void gender() throws IOException {

@@ -121,4 +121,31 @@ public class Ui {
         System.out.println("Nothing was added!");
     }
 
+    public static void displayAskUserNameMessage() {
+        System.out.println("What is your name?");
+    }
+
+    public static void displayAskUserGenderMessage() {
+        System.out.println("What is your gender (male/female)?");
+    }
+
+    public static void displayAskUserWeightMessage() {
+        System.out.println("What is your weight in kg?");
+    }
+
+    public static void displayAskUserHeightMessage() {
+        System.out.println("What is your height in cm?");
+    }
+
+    public static void displayAskUserAgeMessage() {
+        System.out.println("What is your age?");
+    }
+
+    public static void displayAskUserActivityLevelMessage() {
+        System.out.println("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.");
+    }
+
+    public static void displayAskUserWeightGoalMessage() {
+        System.out.println("Do you want to lose/maintain/gain weight?");
+    }
 }
