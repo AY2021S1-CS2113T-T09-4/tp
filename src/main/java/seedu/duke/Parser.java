@@ -107,8 +107,6 @@ public class Parser {
             }
         } catch (StringIndexOutOfBoundsException e) {
             displayStringIndexOutOfBoundsExceptionMessage();
-        } catch (IOException e) {
-            displayIoExceptionMessage();
         }
         return null;
     }
