@@ -8,7 +8,6 @@ import seedu.duke.Ui;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
 
 public class Initialiseuser {
-//    private static Userinfo userInfo = new Userinfo();
     private static String[] data = new String[7];
 
     public static String input() {
