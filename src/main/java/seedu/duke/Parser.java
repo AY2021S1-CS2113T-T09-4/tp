@@ -21,7 +21,11 @@ import seedu.duke.command.GraphCommand;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.text.SimpleDateFormat;
@@ -202,19 +206,16 @@ public class Parser {
             String filePath = initialPath + "/" + fileName + ".txt";
             File file = new File(filePath);
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            try {
-                if (file.exists()) {
-                    String line = reader.readLine();
-                    while (line != null) {
-                        Parser parser = new Parser("add " + line + " d/ " + strDate);
-                        Command cmd = parser.parseCommand();
-                        executeCmd(cmd);
-                        storage.updateFile(calList);
-                        line = reader.readLine();
-                    }
+
+            if (file.exists()) {
+                String line = reader.readLine();
+                while (line != null) {
+                    Parser parser = new Parser("add " + line + " d/ " + strDate);
+                    Command cmd = parser.parseCommand();
+                    executeCmd(cmd);
+                    storage.updateFile(calList);
+                    line = reader.readLine();
                 }
-            } catch (FileNotFoundException e) {
-                System.out.println("There is no such set, please create a new one!\n");
             }
             reader.close();
             return null;
