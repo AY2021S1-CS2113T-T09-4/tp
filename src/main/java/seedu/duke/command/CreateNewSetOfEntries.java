@@ -2,10 +2,10 @@ package seedu.duke.command;
 
 import seedu.duke.storage.UserSetStorage;
 
-public class CreateNewRepeatedSet extends Command {
+public class CreateNewSetOfEntries extends Command {
     protected String trimmedInput;
 
-    public CreateNewRepeatedSet(String trimmedUserInput) {
+    public CreateNewSetOfEntries(String trimmedUserInput) {
         this.canBeChained = true;
         this.trimmedInput = trimmedUserInput;
     }
