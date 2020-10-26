@@ -20,16 +20,15 @@ The section displays the table of contents showing all the available features in
 * [Quick Start](#quick-start)
 * [Features](#features)
     * [Viewing help](#viewing-help): `help`
-    * [Creating a profile for new user](#creating-a-profile-for-new-user): `create new user`
+    * [Creating a new user profile](#creating-a-new-user-profile): `create new user`
     * [Creating a set of entries](#creating-a-set-of-entries): `createSet`
-    * [Adding a target calorie](#adding-a-target-calorie): `target`
-    * [Editing user profile](#editing-user-profile): `edit`
     * [Adding a food entry](#adding-a-food-entry): `add`
     * [Adding an exercise entry](#adding-an-exercise-entry): `add`
     * [Adding a set of entries](#adding-a-set-of-entries): `addSet`
     * [Listing entries for the day](#listing-entries-for-the-day): `list`
     * [Moving an entry to another position](#moving-an-activity-to-another-position): `move`
     * [Editing an entry in list](#editing-an-entry-in-list): `edita`
+    * [Editing user profile](#editing-user-profile): `edit`
     * [Finding entries via keyword](#finding-entries-via-keyword): `find`
     * [Deleting an entry in list](#deleting-an-entry-in-list): `delete`
     * [Deleting all entries in list](#deleting-all-entries-in-list): `deleteALL`
@@ -121,10 +120,10 @@ The expected format of input values:
 ```
 
 
-## Creating a profile for new user
+## Creating a new user profile
 
 **traKCAL** will check for first time user automatically. 
->However, if you want to create a totally new profile, this command allows you to do so
+>However, if you want to create a new profile as an existing user, this command allows you to do so
 
 Format: `create new user`
 
@@ -170,30 +169,11 @@ Example of usage:
 The current activity list has been saved.
 ```
 
-
-## Adding a target calorie
-
-Interprets the answers from the user profile questionnaire to calculate health profile.
-
-tracKCAL calculates: 
-* BMI
-* Recommended daily calorie
-* Calorie goal to reach weight goal
-
-Example of calculated health profile: 
-
-```
-Your BMI is 20.
-Your recommend daily calories intake is 1576.65 calories.
-To gain weight, you should consume 2076.65 calories instead.
-```
-
-
 ## Editing user profile
 
 Edits user profile of an existing user.
 
-Format: `edit n/**NAME** g/**GENDER** w/**WEIGHT** h/**HEIGHT** a/**AGE** af/**ACTIVITY_FACTOR** goal/**WEIGHT_GOALS**`
+Format: `editUser n/**NAME** g/**GENDER** w/**WEIGHT** h/**HEIGHT** a/**AGE** af/**ACTIVITY_FACTOR** goal/**WEIGHT_GOALS**`
 
 Parameters: 
 * `**NAME**`: Name of user.
@@ -205,7 +185,7 @@ Parameters:
 * `**WEIGHT_GOALS**`: Whether user wants to lose/maintain/gain weight.
 
 Example of usage: 
-* `edit n/Sam g/female w/50 h/100 a/10 af/4 goal/gain`
+* `editUser n/Sam g/female w/50 h/100 a/10 af/4 goal/gain`
 
 ```
 ==============================================================
