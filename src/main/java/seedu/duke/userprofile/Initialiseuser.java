@@ -4,27 +4,20 @@ import seedu.duke.Duke;
 import seedu.duke.storage.Userinfotextfilestorage;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import seedu.duke.Ui;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
 
 public class Initialiseuser {
-    private static Userinfo userInfo = new Userinfo();
+//    private static Userinfo userInfo = new Userinfo();
     private static String[] data = new String[7];
 
-    public static String input(String text) {
-        System.out.print(text);
+    public static String input() {
         return Duke.in.nextLine();
     }
 
     public static Userinfo createNewProfile() {
         Userinfo profile = null;
-        sendname();
-        gender();
-        weight();
-        height();
-        age();
-        activityfactor();
-        weightGoal();
+        gatherUserInfo();
         try {
             profile = enterNewUserInfo();
         } catch (IOException e) {
@@ -33,32 +26,49 @@ public class Initialiseuser {
         return profile;
     }
 
-    public static void sendname()  {
-        data[0] = input("What is your name?\n");
+    public static void gatherUserInfo() {
+        name();
+        gender();
+        weight();
+        height();
+        age();
+        activityLevel();
+        weightGoal();
+    }
+
+    public static void name()  {
+        Ui.displayAskUserNameMessage();
+        data[0] = input();
     }
 
     public static void gender() {
-        data[1] = input("What is your gender (male/female)?\n");
+        Ui.displayAskUserGenderMessage();
+        data[1] = input();
     }
 
     public static void weight() {
-        data[2] = input("What is your weight in kg?\n");
+        Ui.displayAskUserWeightMessage();
+        data[2] = input();
     }
 
     public static void height() {
-        data[3] = input("What is your height in cm?\n");
+        Ui.displayAskUserHeightMessage();
+        data[3] = input();
     }
 
     public static void age() {
-        data[4] = input("What is your age?\n");
+        Ui.displayAskUserAgeMessage();
+        data[4] = input();
     }
 
-    public static void activityfactor() {
-        data[5] = input("How active are you on a scale of 1-5? With 1 being least active and 5 being most active.\n");
+    public static void activityLevel() {
+        Ui.displayAskUserActivityLevelMessage();
+        data[5] = input();
     }
 
     public static void weightGoal() {
-        data[6] = input("Do you want to lose/maintain/gain weight?\n");
+        Ui.displayAskUserWeightGoalMessage();
+        data[6] = input();
     }
 
     public static Userinfo enterNewUserInfo() throws IOException {
@@ -68,13 +78,17 @@ public class Initialiseuser {
         return profile;
     }
 
-    public static void saveExistingUserInfo(Userinfo profile) throws IOException {
+    public static void saveExistingUserInfo(Userinfo profile) {
         Initialiseuser.save(profile);
     }
 
-    public static void save(Userinfo profile) throws IOException {
-        Userinfotextfilestorage storage = new Userinfotextfilestorage();
-        storage.save(profile.toString());
+    public static void save(Userinfo profile) {
+        try {
+            Userinfotextfilestorage storage = new Userinfotextfilestorage();
+            storage.save(profile.toString());
+        } catch (IOException e) {
+            displayIoExceptionMessage();
+        }
     }
 
     public static Userinfo loadProfile() {
@@ -85,11 +99,7 @@ public class Initialiseuser {
         }
         Userinfo profile =  new Userinfo(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
         profile.calculateNewUserDetails();
-        try {
-            Initialiseuser.saveExistingUserInfo(profile);
-        } catch (IOException e) {
-            displayIoExceptionMessage();
-        }
+        Initialiseuser.saveExistingUserInfo(profile);
         return profile;
     }
 }
