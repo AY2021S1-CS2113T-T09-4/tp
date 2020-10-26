@@ -42,11 +42,11 @@ public class UserSetStorage {
             String[] activity = toTrim.split("&&");
 
             for (String s : activity) {
-                if (s.startsWith(" ")) {
+                while (s.startsWith(" ")) {
                     s = s.substring(1);
                 }
 
-                if (s.endsWith(" ")) {
+                while (s.endsWith(" ")) {
                     s = s.substring(0, s.length() - 1);
                 }
 

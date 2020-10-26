@@ -1,7 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.command.AddExerciseCommand;
-import seedu.duke.command.CreateNewRepeatedSet;
+import seedu.duke.command.CreateNewSetOfEntries;
 import seedu.duke.command.ByeCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.AddFoodCommand;
@@ -21,10 +21,7 @@ import seedu.duke.command.GraphCommand;
 import seedu.duke.userprofile.Initialiseuser;
 import seedu.duke.userprofile.Userinfo;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.text.SimpleDateFormat;
@@ -44,7 +41,6 @@ import static seedu.duke.ExceptionMessages.displayEmptyAddActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayEmptyEditActivityErrorMessage;
 import static seedu.duke.ExceptionMessages.displayFindErrorMessage;
 import static seedu.duke.ExceptionMessages.displayIoExceptionMessage;
-import static seedu.duke.ExceptionMessages.displayNegativeCalorieInputExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayStringIndexOutOfBoundsExceptionMessage;
 import static seedu.duke.ExceptionMessages.displayIncorrectDateTimeFormatEnteredMessage;
 
@@ -77,7 +73,7 @@ public class Parser {
             case "create":
                 return new CreateNewUserCommand();
             case "createset":
-                return new CreateNewRepeatedSet(arguments[1]);
+                return new CreateNewSetOfEntries(arguments[1]);
             case "add":
                 return prepareAddCommand(userInput);
             case "addset":
@@ -204,14 +200,21 @@ public class Parser {
         try {
             String initialPath = new File("").getAbsolutePath();
             String filePath = initialPath + "/" + fileName + ".txt";
+            File file = new File(filePath);
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            String line = reader.readLine();
-            while (line != null) {
-                Parser parser = new Parser("add " + line + " d/ " + strDate);
-                Command cmd = parser.parseCommand();
-                executeCmd(cmd);
-                storage.updateFile(calList);
-                line = reader.readLine();
+            try {
+                if (file.exists()) {
+                    String line = reader.readLine();
+                    while (line != null) {
+                        Parser parser = new Parser("add " + line + " d/ " + strDate);
+                        Command cmd = parser.parseCommand();
+                        executeCmd(cmd);
+                        storage.updateFile(calList);
+                        line = reader.readLine();
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println("There is no such set, please create a new one!\n");
             }
             reader.close();
             return null;
