@@ -10,21 +10,18 @@ public class Userinfo {
     protected String weight;
     protected String height;
     protected String age;
-    protected String activityfactor;
+    protected String activityLevel;
     protected String weightGoal;
     protected double calories;
 
-    public Userinfo() {
-    }
-
     public Userinfo(String name, String gender, String weight, String height,
-                    String age, String activityfactor, String weightGoal) {
+                    String age, String activityLevel, String weightGoal) {
         this.name = name;
         this.gender = gender;
         this.weight = weight;
         this.height = height;
         this.age = age;
-        this.activityfactor = activityfactor;
+        this.activityLevel = activityLevel;
         this.weightGoal = weightGoal;
     }
 
@@ -49,7 +46,7 @@ public class Userinfo {
     }
 
     public String getactivityfactor() {
-        return activityfactor;
+        return activityLevel;
     }
 
     public String getWeightGoal() {
